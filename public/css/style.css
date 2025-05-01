@@ -1,0 +1,106 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/*by giving the container class inside the boiler plate
+flex=1 we have set our fotter to remain intact with the bottom*/
+.container{
+    flex: 1;
+}
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+.fa-compass{
+    color: #fe424d ;
+    font-size: 2rem;
+}
+.nav-link{
+    /*since in the navbar the styling is of the bootstrap so inorder to overpower it orin order to override it with our own styling we use the important */
+    color: #222222 !important;
+}
+/*Footer decoration started here*/
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info-links, .f-info-socials, .f-info-brand{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 2rem;
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/*CARDS STYLING*/
+.listing-card{
+    border:none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text p{
+    font-weight: 400 !important;
+}
+.listing-link{
+    text-decoration: none;
+}
+/*MAKING THE CARD EFFECT*/
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover {
+    opacity: 0.2;
+    background-color: white;
+}
+/*Here we set the styling of the new page */
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/*Here we are doing the editing of the edit page*/
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/*Here we are editing a particular show page of the lisitngs*/
+.show-img{
+    height: 30vh;
+}
+.btns
+{
+    display: flex;
+}
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*Styling for the map*/
+#map{
+    height: 400px;
+    width: 80vh;
+}
