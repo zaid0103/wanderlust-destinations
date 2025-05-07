@@ -13,7 +13,7 @@
       }
     ],
     "env": {
-      "MONGO_URI": "@mongo_uri",
+      "ATLASDB_URL": "@atlasdb_url",
       "MAP_TOKEN": "@map_token",
       "CLOUD_NAME": "@cloud_name",
       "CLOUD_API_KEY": "@cloud_api_key",
