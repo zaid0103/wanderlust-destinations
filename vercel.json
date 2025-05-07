@@ -11,13 +11,5 @@
         "src": "/(.*)",
         "dest": "app.js"
       }
-    ],
-    "env": {
-      "ATLASDB_URL": "@atlasdb_url",
-      "MAP_TOKEN": "@map_token",
-      "CLOUD_NAME": "@cloud_name",
-      "CLOUD_API_KEY": "@cloud_api_key",
-      "CLOUD_API_SECRET": "@cloud_api_secret",
-      "SECRET": "@secret"
-    }
+    ]
   }
