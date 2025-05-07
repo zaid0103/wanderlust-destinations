@@ -1,0 +1,23 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "app.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "app.js"
+      }
+    ],
+    "env": {
+      "MONGO_URI": "@mongo_uri",
+      "MAP_TOKEN": "@map_token",
+      "CLOUD_NAME": "@cloud_name",
+      "CLOUD_API_KEY": "@cloud_api_key",
+      "CLOUD_API_SECRET": "@cloud_api_secret",
+      "SECRET": "@secret"
+    }
+  }
