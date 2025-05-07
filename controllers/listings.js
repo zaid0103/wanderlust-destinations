@@ -1,4 +1,5 @@
-const Listing = require("../models/listing.js")
+const Listing = require("../models/listing.js");
+const Booking = require("../models/booking.js"); // Add this import at the top
 const mbxgeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxgeocoding({accessToken:mapToken});
@@ -104,3 +105,10 @@ module.exports.showListing = async(req,res)=>
             req.flash("success","Listing Deleted!");
             res.redirect("/listings");
         };
+
+module.exports.renderDashboard = async (req, res) => {
+    const bookings = await Booking.find({ user: req.user._id })
+        .populate("listing")  // Change "property" to "listing"
+        .sort("-createdAt");
+    res.render("dashboard", { bookings });
+};

@@ -15,12 +15,12 @@ const flash= require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const Booking = require("./models/booking.js");
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
-
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+const bookingRoutes = require("./routes/booking");
 
 const dbUrl = process.env.ATLASDB_URL;
 main().then(()=>
@@ -95,10 +95,13 @@ app.use((req,res,next)=>
     res.send(registeredUser);
 });*/
 
-    app.use("/listings",listingRouter);
-    app.use("/listings/:id/reviews",reviewRouter);
-    app.use("/",userRouter);
+// Update the order of route mounting to ensure booking routes are mounted correctly
+app.use("/", userRouter);
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", bookingRoutes); // Make sure this is mounted before the 404 handler
 
+// This should be the last route
 app.all("*",(req,res,next)=>
 {
     next(new ExpressError(404, "Page Not Found!"));

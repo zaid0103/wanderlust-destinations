@@ -41,11 +41,12 @@
         </div>
         <div class="navbar-nav ms-auto">
           <a class="nav-link" href="/listings/new">Add new Listing</a>
-          <%if(typeof currUser !== "undefined" && currUser){%>
+          <%if(!currUser){%>
             <a class="nav-link"  href="/signup"><b>SignUp</b></a>
             <a class="nav-link" href="/login"><b>LogIn</b></a>  
           <%}%>
-          <%if(typeof currUser !== "undefined" && currUser){%>
+          <%if(currUser){%>
+            <a class="nav-link" href="/dashboard">My Bookings</a>
             <a class="nav-link" href="/logout"><b>LogOut</b></a>
           <%}%>
           </div>

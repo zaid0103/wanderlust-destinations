@@ -1,0 +1,46 @@
+<%- layout("layouts/boilerplate") %>
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <h2>Payment Details</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5>Total Amount: $<%= booking.totalPrice %></h5>
+                <form id="payment-form">
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <input class="form-control" type="text" pattern="\d{16}" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-label">Expiry (MM/YY)</label>
+                            <input class="form-control" type="text" pattern="\d{2}/\d{2}" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">CVV</label>
+                            <input class="form-control" type="text" pattern="\d{3}" required>
+                        </div>
+                    </div>
+                    <button class="btn btn-success mt-3" type="submit">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const response = await fetch('/booking/<%= booking._id %>/payment', {
+            method: 'POST'
+        });
+        const result = await response.json();
+        if (result.success) {
+            alert('Payment successful!');
+            window.location.href = '/dashboard';
+        } else {
+            alert('Payment failed. Please try again.');
+        }
+    });
+</script>

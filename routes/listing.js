@@ -10,6 +10,8 @@ const listingController = require("../controllers/listings.js");
 const multer = require('multer');
 const {storage} = require("../cloudConfig.js");
 const upload = multer({storage});
+const Booking = require("../models/booking.js");
+
 router
 .route("/")
 .get(wrapAsync(listingController.index))
@@ -28,6 +30,16 @@ router
  .put(isLoggedIn,isOwner, upload.single('listing[image]'),validateListing,wrapAsync(listingController.updateListing))
  .delete(isLoggedIn,isOwner,wrapAsync(listingController.destroyListing));
 
+router.get("/:id", wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    const listing = await Listing.findById(id).populate("owner");
+    if (!listing) {
+        req.flash("error", "Listing does not exist!");
+        return res.redirect("/listings");
+    }
+    res.render("listings/show.ejs", { listing });
+}));
+
 //index route- we will accept the get request at /listings and then we will be returning all the listings
     
     //new route - now we are creating a new route that will give us form with the help of which we will be adding new place to our listings
@@ -39,10 +51,6 @@ router
     //edit route- this is the route we will be making in order to edit one of our listing
  
     router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.renderEditForm));
-    
-    //update route- the route will update the information inside the database after it has been edited in the edit.ejs
-    
-    //delete route- this route is being created in order to delete a particular listing
     
 
 module.exports = router;

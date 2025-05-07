@@ -20,6 +20,10 @@
 <body>
     <!-- Navbar -->
     <%- include("../includes/navbar.ejs") %>
+          <%if(currUser){%>
+            <a class="nav-link" href="/dashboard">My Bookings</a>
+            <a class="nav-link" href="/logout"><b>LogOut</b></a>
+          <%}%>
 
     <!-- Flash Messages (Moved outside container) -->
     <%- include("../includes/flash.ejs") %>
